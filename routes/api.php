@@ -19,3 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
  Route::resource('garrafas',App\Http\Controllers\GarrafaController::class);
+ Route::resource('canecas',App\Http\Controllers\CanecaController::class);
+ Route::resource('auditorialogs',App\Http\Controllers\AuditoriaLogController::class);
+ Route::resource('auditorialogs',App\Http\Controllers\AuditorialogController::class);
+ Route::resource('auditorialogs',App\Http\Controllers\AuditorialogController::class);
