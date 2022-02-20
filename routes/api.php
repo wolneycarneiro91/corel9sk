@@ -27,3 +27,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
  
+ Route::resource('roupas',App\Http\Controllers\RoupaController::class);
