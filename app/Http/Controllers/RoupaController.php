@@ -2,45 +2,45 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\{{modelName}}Request;
-use App\Models\{{modelName}};
+use App\Http\Requests\RoupaRequest;
+use App\Models\Roupa;
 
-class {{modelName}}Controller extends Controller
+class RoupaController extends Controller
 {
-    public function __construct({{modelName}} ${{modelNameSingularLowerCase}}){
-            $this->{{modelNameSingularLowerCase}} = ${{modelNameSingularLowerCase}};        
+    public function __construct(Roupa $roupa){
+            $this->roupa = $roupa;        
     } 
     public function index()
     {                           
-        $data = $this->{{modelNameSingularLowerCase}}->all();
+        $data = $this->roupa->all();
         return response()->json($data, 201);                
     }
-    public function store({{modelName}}Request $request)
+    public function store(RoupaRequest $request)
     {
         $this->validate($request, $request->rules());   
         $dataFrom = $request->all();
         DB::beginTransaction();
         try {        
-            $data = $this->{{modelNameSingularLowerCase}}->create($dataFrom);  
+            $data = $this->roupa->create($dataFrom);  
             DB::commit(); 
             return response()->json($data,201) ;
         } 
         catch (\Exception $e) {
             DB::rollback();
-            return response()->json('Não foi possível cadastrar', 406);
+            return response()->json('Não foi possível cadastrar   '.$e, 406);
         }             
     }
     public function show($id)
     {
-        $data = $this->{{modelNameSingularLowerCase}}->find($id);
+        $data = $this->roupa->find($id);
         if(!$data){
             return response()->json(['error'=>'Nada foi encontrado'],404) ;
         }
         return response()->json($data,201) ;
     }
-    public function update({{modelName}}Request $request, $id)
+    public function update(RoupaRequest $request, $id)
     { 
-        $data = $this->{{modelNameSingularLowerCase}}->find($id);  
+        $data = $this->roupa->find($id);  
         if(!$data){
             return response()->json(['error'=>'Nada foi encontrado'],404) ;
         } 
@@ -59,9 +59,9 @@ class {{modelName}}Controller extends Controller
             }                             
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
-        $data = $this->{{modelNameSingularLowerCase}}->find($id);
+        $data = $this->roupa->find($id);
         if(!$data){
             return response()->json(['error'=>'Nada foi encontrado'],404) ;
         }

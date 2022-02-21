@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class GarrafaRequest extends FormRequest
+class RoupaRequest extends FormRequest
 {
     public function authorize()
     {

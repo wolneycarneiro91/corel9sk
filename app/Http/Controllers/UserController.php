@@ -2,28 +2,29 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\GarrafaRequest;
-use App\Models\Garrafa;
+use App\Http\Requests\UserRequest;
+use App\Models\User;
 
-class GarrafaController extends Controller
+class UserController extends Controller
 {
-    public function __construct(Garrafa $garrafa){
-            $this->garrafa = $garrafa;        
+    public function __construct(User $user){
+            $this->user = $user;        
     } 
     public function index()
     {                           
-        $data = $this->garrafa->all();
+        $data = $this->user->all();
         return response()->json($data, 201);                
     }
-    public function store(GarrafaRequest $request)
+    public function store(UserRequest $request)
     {
         $this->validate($request, $request->rules());   
         $dataFrom = $request->all();
+        $dataFrom['password'] = bcrypt($dataFrom['password'])  ;           
         DB::beginTransaction();
         try {        
-            $data = $this->garrafa->create($dataFrom);  
+            $data = $this->user->create($dataFrom);  
             DB::commit(); 
-            return response()->json($data,201) ;
+            return response()->json($data['name'].' Criado com sucesso',201) ;
         } 
         catch (\Exception $e) {
             DB::rollback();
@@ -32,15 +33,15 @@ class GarrafaController extends Controller
     }
     public function show($id)
     {
-        $data = $this->garrafa->find($id);
+        $data = $this->user->find($id);
         if(!$data){
             return response()->json(['error'=>'Nada foi encontrado'],404) ;
         }
         return response()->json($data,201) ;
     }
-    public function update(GarrafaRequest $request, $id)
+    public function update(UserRequest $request, $id)
     { 
-        $data = $this->garrafa->find($id);  
+        $data = $this->user->find($id);  
         if(!$data){
             return response()->json(['error'=>'Nada foi encontrado'],404) ;
         } 
@@ -50,7 +51,7 @@ class GarrafaController extends Controller
         try {          
             $data->update($dataFrom);  
             DB::commit(); 
-            return response()->json($data,201) ;    
+            return response()->json($data['name'].' Atualizado com sucesso',201) ;
             }
         catch (\Exception $e)
              {
@@ -61,7 +62,7 @@ class GarrafaController extends Controller
 
     public function destroy($id)
     {
-        $data = $this->garrafa->find($id);
+        $data = $this->user->find($id);
         if(!$data){
             return response()->json(['error'=>'Nada foi encontrado'],404) ;
         }

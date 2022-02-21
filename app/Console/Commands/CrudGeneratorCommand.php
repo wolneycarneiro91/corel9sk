@@ -52,7 +52,12 @@ class CrudGeneratorCommand extends Command
         $this->request($name);
         //'App\Http\Controllers\{$name}Controller::class'
         $nameController = $name."Controller";
-        File::append(base_path('routes/api.php'), "\n Route::resource('".Str::plural(strtolower($name))."'".str_replace(".","",",App\Http\Controllers\.$nameController.::class);"));
+        //File::append(base_path('routes/api.php'), "\n Route::resource('".Str::plural(strtolower($name))."'".str_replace(".","",",App\Http\Controllers\.$nameController.::class);"));
+        File::append(base_path('routes/api.php'), "\n \n Route::get('".Str::plural(strtolower($name))."'".str_replace(".","",",[App\Http\Controllers\.$nameController.::class,'index'])->middleware('auth:sanctum');"));        
+        File::append(base_path('routes/api.php'), "\n Route::get('".Str::plural(strtolower($name))."/{id}'".str_replace(".","",",[App\Http\Controllers\.$nameController.::class,'show'])->middleware('auth:sanctum');")); 
+        File::append(base_path('routes/api.php'), "\n Route::post('".Str::plural(strtolower($name))."'".str_replace(".","",",[App\Http\Controllers\.$nameController.::class,'store'])->middleware('auth:sanctum');"));   
+        File::append(base_path('routes/api.php'), "\n Route::put('".Str::plural(strtolower($name))."/{id}'".str_replace(".","",",[App\Http\Controllers\.$nameController.::class,'update'])->middleware('auth:sanctum');"));      
+        File::append(base_path('routes/api.php'), "\n Route::delete('".Str::plural(strtolower($name))."/{id}'".str_replace(".","",",[App\Http\Controllers\.$nameController.::class,'delete'])->middleware('auth:sanctum');"));      
         Artisan::call(command: 'make:migration create_'.Str::plural(strtolower($name)).'_table --create='.Str::plural(strtolower($name)));
     }
     protected function controller($name)
