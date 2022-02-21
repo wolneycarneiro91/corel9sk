@@ -26,6 +26,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 //Route::resource('garrafas',App\Http\Controllers\GarrafaController::class)->middleware(['auth:sanctum']);
 
+ 
 
- 
- 
