@@ -7,6 +7,7 @@ use App\Models\{{modelName}};
 
 class {{modelName}}Controller extends Controller
 {
+    protected ${{modelNameSingularLowerCase}};
     public function __construct({{modelName}} ${{modelNameSingularLowerCase}}){
             $this->{{modelNameSingularLowerCase}} = ${{modelNameSingularLowerCase}};        
     } 
