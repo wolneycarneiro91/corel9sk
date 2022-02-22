@@ -50,7 +50,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['single','main'],
             'ignore_exceptions' => false,
         ],
 
@@ -59,6 +59,12 @@ return [
             'path' => storage_path('logs/laravel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
         ],
+        'main' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/main.log'),
+            'level' => env('LOG_LEVEL', 'info'),
+            'permission'=>0644,
+        ],        
 
         'daily' => [
             'driver' => 'daily',
