@@ -7,6 +7,7 @@ use App\Models\Roupa;
 
 class RoupaController extends Controller
 {
+    protected $roupa;
     public function __construct(Roupa $roupa){
             $this->roupa = $roupa;        
     } 
