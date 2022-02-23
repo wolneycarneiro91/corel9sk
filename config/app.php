@@ -162,7 +162,7 @@ return [
         Illuminate\Session\SessionServiceProvider::class,
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
-        Illuminate\View\ViewServiceProvider::class,                
+        Illuminate\View\ViewServiceProvider::class,                        
 
         /*
          * Package Service Providers...
@@ -177,6 +177,7 @@ return [
         App\Providers\EventServiceProvider::class,        
         App\Providers\RouteServiceProvider::class,
         OwenIt\Auditing\AuditingServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
         
 
     ],
