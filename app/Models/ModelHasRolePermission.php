@@ -6,13 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Contracts\Auditable;
 
-class Role_has_permission extends Model implements Auditable
+class ModelHasRolePermission extends Model implements Auditable
 {
-    protected $primaryKey = null;
-
-    public $incrementing = false;
     use \OwenIt\Auditing\Auditable;    
-    use SoftDeletes;    
+    use SoftDeletes;
+    protected $guarded = ['id'];
     protected $dates = ['deleted_at'];
-    protected $fillable = ["permission_id","role_id"];
+    protected $fillable = ["model_id","role_id","permission"];
 }

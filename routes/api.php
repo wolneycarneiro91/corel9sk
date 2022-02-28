@@ -63,3 +63,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  Route::post('role_has_permissions',[App\Http\Controllers\Role_has_permissionController::class,'store'])->middleware('auth:sanctum');
  Route::put('role_has_permissions/{id}',[App\Http\Controllers\Role_has_permissionController::class,'update'])->middleware('auth:sanctum');
  Route::delete('role_has_permissions/{id}',[App\Http\Controllers\Role_has_permissionController::class,'delete'])->middleware('auth:sanctum');
+ 
+ Route::get('role_has_permissions',[App\Http\Controllers\Role_has_permissionController::class,'index'])->middleware('auth:sanctum');
+ Route::get('role_has_permissions/{id}',[App\Http\Controllers\Role_has_permissionController::class,'show'])->middleware('auth:sanctum');
+ Route::post('role_has_permissions',[App\Http\Controllers\Role_has_permissionController::class,'store'])->middleware('auth:sanctum');
+ Route::put('role_has_permissions/{id}',[App\Http\Controllers\Role_has_permissionController::class,'update'])->middleware('auth:sanctum');
+ Route::delete('role_has_permissions/{id}',[App\Http\Controllers\Role_has_permissionController::class,'delete'])->middleware('auth:sanctum');
+ 
+ Route::get('model_has_permissions',[App\Http\Controllers\Model_has_permissionController::class,'index'])->middleware('auth:sanctum');
+ Route::get('model_has_permissions/{id}',[App\Http\Controllers\Model_has_permissionController::class,'show'])->middleware('auth:sanctum');
+ Route::post('model_has_permissions',[App\Http\Controllers\Model_has_permissionController::class,'store'])->middleware('auth:sanctum');
+ Route::put('model_has_permissions/{id}',[App\Http\Controllers\Model_has_permissionController::class,'update'])->middleware('auth:sanctum');
+ Route::delete('model_has_permissions/{id}',[App\Http\Controllers\Model_has_permissionController::class,'delete'])->middleware('auth:sanctum');
+ 
+ Route::get('modelhasrolepermissions',[App\Http\Controllers\ModelHasRolePermissionController::class,'index'])->middleware('auth:sanctum');
+ Route::get('modelhasrolepermissions/{id}',[App\Http\Controllers\ModelHasRolePermissionController::class,'show'])->middleware('auth:sanctum');
+ Route::post('modelhasrolepermissions',[App\Http\Controllers\ModelHasRolePermissionController::class,'store'])->middleware('auth:sanctum');
+ Route::put('modelhasrolepermissions/{id}',[App\Http\Controllers\ModelHasRolePermissionController::class,'update'])->middleware('auth:sanctum');
+ Route::delete('modelhasrolepermissions/{id}',[App\Http\Controllers\ModelHasRolePermissionController::class,'delete'])->middleware('auth:sanctum');
+ 
