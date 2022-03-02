@@ -12,5 +12,5 @@ class ModelHasRolePermission extends Model implements Auditable
     use SoftDeletes;
     protected $guarded = ['id'];
     protected $dates = ['deleted_at'];
-    protected $fillable = ["model_id","role_id","permission"];
+    protected $fillable = ["model_id","role_id","permission_id"];
 }

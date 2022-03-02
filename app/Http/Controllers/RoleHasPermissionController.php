@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\Role_has_permissionRequest;
-use App\Models\Role_has_permission;
+use App\Http\Requests\RoleHasPermissionRequest;
+use App\Models\RoleHasPermission;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
-class Role_has_permissionController extends Controller
+class RoleHasPermissionController extends Controller
 {
     protected $role_has_permission;
-    public function __construct(Role_has_permission $role_has_permission){
+    public function __construct(RoleHasPermission $role_has_permission){
             $this->role_has_permission = $role_has_permission;        
     } 
     public function index()
@@ -18,7 +18,7 @@ class Role_has_permissionController extends Controller
         $data = $this->role_has_permission->all();
         return response()->json($data, 201);                
     }
-    public function store(Role_has_permissionRequest $request)
+    public function store(RoleHasPermissionRequest $request)
     {
         $this->validate($request, $request->rules());   
         $dataFrom = $request->all();
@@ -43,7 +43,7 @@ class Role_has_permissionController extends Controller
         }
         return response()->json($data,201) ;
     }
-    public function update(Role_has_permissionRequest $request, $id)
+    public function update(RoleHasPermissionRequest $request, $id)
     { 
         $data = $this->role_has_permission->find($id);  
         if(!$data){

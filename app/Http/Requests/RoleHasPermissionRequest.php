@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RoupaRequest extends FormRequest
+class RoleHasPermissionRequest extends FormRequest
 {
     public function authorize()
     {

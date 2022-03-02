@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Contracts\Auditable;
 
-class Role_has_permission extends Model implements Auditable
+class RoleHasPermission extends Model implements Auditable
 {
     protected $primaryKey = null;
 

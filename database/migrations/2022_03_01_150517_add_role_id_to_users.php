@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('model_has_role_permissions', function (Blueprint $table) {
-            $table->id();
-            $table->integer('model_id');  
-            $table->integer('role_id');  
-            $table->integer('permission_id');  
-            $table->softDeletes();            
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('role_id')->nullable();
         });
     }
 
@@ -30,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modelhasrolepermissions');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('role_id');     
+        });
     }
 };

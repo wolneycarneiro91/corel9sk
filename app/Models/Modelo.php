@@ -12,5 +12,5 @@ class Modelo extends Model implements Auditable
     use SoftDeletes;
     protected $guarded = ['id'];
     protected $dates = ['deleted_at'];
-    protected $fillable = ["route_name"];
+    protected $fillable = ["name"];
 }

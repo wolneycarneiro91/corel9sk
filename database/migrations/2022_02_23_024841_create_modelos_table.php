@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('modelos', function (Blueprint $table) {
             $table->id();
-            $table->string('route_name')->unique();
+            $table->string('name')->unique();
             $table->softDeletes();
             $table->timestamps();
         });

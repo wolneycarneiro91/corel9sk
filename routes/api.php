@@ -3,33 +3,13 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 Route::post('users',[App\Http\Controllers\UserController::class,'store']);
 Route::prefix('auth')->group(function(){    
     Route::post('login',[App\Http\Controllers\Auth\Api\LoginController::class,'login']);
     Route::post('logout',[App\Http\Controllers\Auth\Api\LoginController::class,'logout'])->middleware(['auth:sanctum']);  
 });
 
-
-Route::resource('roupas',App\Http\Controllers\RoupaController::class)->middleware(['auth:sanctum']);
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {         
-    return $request->user();
-});
 //Route::resource('garrafas',App\Http\Controllers\GarrafaController::class)->middleware(['auth:sanctum']);
-
- 
-
-
- 
  Route::get('roles',[App\Http\Controllers\RoleController::class,'index'])->middleware('auth:sanctum');
  Route::get('roles/{id}',[App\Http\Controllers\RoleController::class,'show'])->middleware('auth:sanctum');
  Route::post('roles',[App\Http\Controllers\RoleController::class,'store'])->middleware('auth:sanctum');
@@ -42,39 +22,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  Route::put('permissions/{id}',[App\Http\Controllers\PermissionController::class,'update'])->middleware('auth:sanctum');
  Route::delete('permissions/{id}',[App\Http\Controllers\PermissionController::class,'delete'])->middleware('auth:sanctum');
 
- 
- Route::get('cachorros',[App\Http\Controllers\CachorroController::class,'index'])->middleware('auth:sanctum');
- Route::get('cachorros/{id}',[App\Http\Controllers\CachorroController::class,'show'])->middleware('auth:sanctum');
- Route::post('cachorros',[App\Http\Controllers\CachorroController::class,'store'])->middleware('auth:sanctum');
- Route::put('cachorros/{id}',[App\Http\Controllers\CachorroController::class,'update'])->middleware('auth:sanctum');
- Route::delete('cachorros/{id}',[App\Http\Controllers\CachorroController::class,'delete'])->middleware('auth:sanctum');
-
- 
  Route::get('modelos',[App\Http\Controllers\ModeloController::class,'index'])->middleware('auth:sanctum');
  Route::get('modelos/{id}',[App\Http\Controllers\ModeloController::class,'show'])->middleware('auth:sanctum');
  Route::post('modelos',[App\Http\Controllers\ModeloController::class,'store'])->middleware('auth:sanctum');
  Route::put('modelos/{id}',[App\Http\Controllers\ModeloController::class,'update'])->middleware('auth:sanctum');
  Route::delete('modelos/{id}',[App\Http\Controllers\ModeloController::class,'delete'])->middleware('auth:sanctum');
- 
 
+ Route::get('rolehaspermissions',[App\Http\Controllers\RoleHasPermissionController::class,'index'])->middleware('auth:sanctum');
+ Route::get('rolehaspermissions/{id}',[App\Http\Controllers\RoleHasPermissionController::class,'show'])->middleware('auth:sanctum');
+ Route::post('rolehaspermissions',[App\Http\Controllers\RoleHasPermissionController::class,'store'])->middleware('auth:sanctum');
+ Route::put('rolehaspermissions/{id}',[App\Http\Controllers\RoleHasPermissionController::class,'update'])->middleware('auth:sanctum');
+ Route::delete('rolehaspermissions/{id}',[App\Http\Controllers\RoleHasPermissionController::class,'delete'])->middleware('auth:sanctum');
  
- Route::get('role_has_permissions',[App\Http\Controllers\Role_has_permissionController::class,'index'])->middleware('auth:sanctum');
- Route::get('role_has_permissions/{id}',[App\Http\Controllers\Role_has_permissionController::class,'show'])->middleware('auth:sanctum');
- Route::post('role_has_permissions',[App\Http\Controllers\Role_has_permissionController::class,'store'])->middleware('auth:sanctum');
- Route::put('role_has_permissions/{id}',[App\Http\Controllers\Role_has_permissionController::class,'update'])->middleware('auth:sanctum');
- Route::delete('role_has_permissions/{id}',[App\Http\Controllers\Role_has_permissionController::class,'delete'])->middleware('auth:sanctum');
- 
- Route::get('role_has_permissions',[App\Http\Controllers\Role_has_permissionController::class,'index'])->middleware('auth:sanctum');
- Route::get('role_has_permissions/{id}',[App\Http\Controllers\Role_has_permissionController::class,'show'])->middleware('auth:sanctum');
- Route::post('role_has_permissions',[App\Http\Controllers\Role_has_permissionController::class,'store'])->middleware('auth:sanctum');
- Route::put('role_has_permissions/{id}',[App\Http\Controllers\Role_has_permissionController::class,'update'])->middleware('auth:sanctum');
- Route::delete('role_has_permissions/{id}',[App\Http\Controllers\Role_has_permissionController::class,'delete'])->middleware('auth:sanctum');
- 
- Route::get('model_has_permissions',[App\Http\Controllers\Model_has_permissionController::class,'index'])->middleware('auth:sanctum');
- Route::get('model_has_permissions/{id}',[App\Http\Controllers\Model_has_permissionController::class,'show'])->middleware('auth:sanctum');
- Route::post('model_has_permissions',[App\Http\Controllers\Model_has_permissionController::class,'store'])->middleware('auth:sanctum');
- Route::put('model_has_permissions/{id}',[App\Http\Controllers\Model_has_permissionController::class,'update'])->middleware('auth:sanctum');
- Route::delete('model_has_permissions/{id}',[App\Http\Controllers\Model_has_permissionController::class,'delete'])->middleware('auth:sanctum');
+ Route::get('modelhaspermissions',[App\Http\Controllers\ModelHasPermissionController::class,'index'])->middleware('auth:sanctum');
+ Route::get('modelhaspermissions/{id}',[App\Http\Controllers\ModelHasPermissionController::class,'show'])->middleware('auth:sanctum');
+ Route::post('modelhaspermissions',[App\Http\Controllers\ModelHasPermissionController::class,'store'])->middleware('auth:sanctum');
+ Route::put('modelhaspermissions/{id}',[App\Http\Controllers\ModelHasPermissionController::class,'update'])->middleware('auth:sanctum');
+ Route::delete('modelhaspermissions/{id}',[App\Http\Controllers\ModelHasPermissionController::class,'delete'])->middleware('auth:sanctum');
  
  Route::get('modelhasrolepermissions',[App\Http\Controllers\ModelHasRolePermissionController::class,'index'])->middleware('auth:sanctum');
  Route::get('modelhasrolepermissions/{id}',[App\Http\Controllers\ModelHasRolePermissionController::class,'show'])->middleware('auth:sanctum');
@@ -82,3 +46,31 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  Route::put('modelhasrolepermissions/{id}',[App\Http\Controllers\ModelHasRolePermissionController::class,'update'])->middleware('auth:sanctum');
  Route::delete('modelhasrolepermissions/{id}',[App\Http\Controllers\ModelHasRolePermissionController::class,'delete'])->middleware('auth:sanctum');
  
+
+ 
+ 
+ Route::get('roupas',[App\Http\Controllers\RoupaController::class,'index'])->middleware('auth:sanctum');
+ Route::get('roupas/{id}',[App\Http\Controllers\RoupaController::class,'show'])->middleware('auth:sanctum');
+ Route::post('roupas',[App\Http\Controllers\RoupaController::class,'store'])->middleware('auth:sanctum');
+ Route::put('roupas/{id}',[App\Http\Controllers\RoupaController::class,'update'])->middleware('auth:sanctum');
+ Route::delete('roupas/{id}',[App\Http\Controllers\RoupaController::class,'delete'])->middleware('auth:sanctum');
+ 
+
+ 
+ Route::get('gatos',[App\Http\Controllers\GatoController::class,'index'])->middleware('auth:sanctum');
+ Route::get('gatos/{id}',[App\Http\Controllers\GatoController::class,'show'])->middleware('auth:sanctum');
+ Route::post('gatos',[App\Http\Controllers\GatoController::class,'store'])->middleware('auth:sanctum');
+ Route::put('gatos/{id}',[App\Http\Controllers\GatoController::class,'update'])->middleware('auth:sanctum');
+ Route::delete('gatos/{id}',[App\Http\Controllers\GatoController::class,'delete'])->middleware('auth:sanctum');
+ 
+ Route::get('aviaos',[App\Http\Controllers\AviaoController::class,'index'])->middleware('auth:sanctum');
+ Route::get('aviaos/{id}',[App\Http\Controllers\AviaoController::class,'show'])->middleware('auth:sanctum');
+ Route::post('aviaos',[App\Http\Controllers\AviaoController::class,'store'])->middleware('auth:sanctum');
+ Route::put('aviaos/{id}',[App\Http\Controllers\AviaoController::class,'update'])->middleware('auth:sanctum');
+ Route::delete('aviaos/{id}',[App\Http\Controllers\AviaoController::class,'delete'])->middleware('auth:sanctum');
+ 
+ Route::get('casas',[App\Http\Controllers\CasaController::class,'index'])->middleware('auth:sanctum');
+ Route::get('casas/{id}',[App\Http\Controllers\CasaController::class,'show'])->middleware('auth:sanctum');
+ Route::post('casas',[App\Http\Controllers\CasaController::class,'store'])->middleware('auth:sanctum');
+ Route::put('casas/{id}',[App\Http\Controllers\CasaController::class,'update'])->middleware('auth:sanctum');
+ Route::delete('casas/{id}',[App\Http\Controllers\CasaController::class,'delete'])->middleware('auth:sanctum');
