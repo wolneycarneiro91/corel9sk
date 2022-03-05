@@ -3,7 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
 Route::post('users',[App\Http\Controllers\UserController::class,'store']);
+Route::get('users',[App\Http\Controllers\UserController::class,'index']);
+//Route::put('users/{id}',[App\Http\Controllers\UserController::class,'update']);
 Route::prefix('auth')->group(function(){    
     Route::post('login',[App\Http\Controllers\Auth\Api\LoginController::class,'login']);
     Route::post('logout',[App\Http\Controllers\Auth\Api\LoginController::class,'logout'])->middleware(['auth:sanctum']);  
@@ -69,8 +72,14 @@ Route::prefix('auth')->group(function(){
  Route::put('aviaos/{id}',[App\Http\Controllers\AviaoController::class,'update'])->middleware('auth:sanctum');
  Route::delete('aviaos/{id}',[App\Http\Controllers\AviaoController::class,'delete'])->middleware('auth:sanctum');
  
- Route::get('casas',[App\Http\Controllers\CasaController::class,'index'])->middleware('auth:sanctum');
+ Route::get('casas',[App\Http\Controllers\CasaController::class,'index'])->middleware(['auth:sanctum','access_control'])->name('casas-get');
  Route::get('casas/{id}',[App\Http\Controllers\CasaController::class,'show'])->middleware('auth:sanctum');
- Route::post('casas',[App\Http\Controllers\CasaController::class,'store'])->middleware('auth:sanctum');
+ Route::post('casas',[App\Http\Controllers\CasaController::class,'store'])->middleware(['auth:sanctum','access_control'])->name('casas-post');
  Route::put('casas/{id}',[App\Http\Controllers\CasaController::class,'update'])->middleware('auth:sanctum');
  Route::delete('casas/{id}',[App\Http\Controllers\CasaController::class,'delete'])->middleware('auth:sanctum');
+ 
+ Route::get('musicas',[App\Http\Controllers\MusicaController::class,'index'])->middleware(['auth:sanctum','access_control'])->name('musicas-get');
+ Route::get('musicas/{id}',[App\Http\Controllers\MusicaController::class,'show'])->middleware(['auth:sanctum','access_control'])->name('musicas-get');
+ Route::post('musicas',[App\Http\Controllers\MusicaController::class,'store'])->middleware(['auth:sanctum','access_control'])->name('musicas-post');
+ Route::put('musicas/{id}',[App\Http\Controllers\MusicaController::class,'update'])->middleware(['auth:sanctum','access_control'])->name('musicas-put');
+ Route::delete('musicas/{id}',[App\Http\Controllers\MusicaController::class,'delete'])->middleware(['auth:sanctum','access_control'])->name('musicas-delete');
