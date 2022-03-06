@@ -52,7 +52,7 @@ Route::prefix('auth')->group(function(){
 
  
  
- Route::get('roupas',[App\Http\Controllers\RoupaController::class,'index'])->middleware('auth:sanctum');
+ Route::get('roupas',[App\Http\Controllers\RoupaController::class,'index']);//->middleware('auth:sanctum');
  Route::get('roupas/{id}',[App\Http\Controllers\RoupaController::class,'show'])->middleware('auth:sanctum');
  Route::post('roupas',[App\Http\Controllers\RoupaController::class,'store'])->middleware('auth:sanctum');
  Route::put('roupas/{id}',[App\Http\Controllers\RoupaController::class,'update'])->middleware('auth:sanctum');
@@ -72,14 +72,9 @@ Route::prefix('auth')->group(function(){
  Route::put('aviaos/{id}',[App\Http\Controllers\AviaoController::class,'update'])->middleware('auth:sanctum');
  Route::delete('aviaos/{id}',[App\Http\Controllers\AviaoController::class,'delete'])->middleware('auth:sanctum');
  
- Route::get('casas',[App\Http\Controllers\CasaController::class,'index'])->middleware(['auth:sanctum','access_control'])->name('casas-get');
- Route::get('casas/{id}',[App\Http\Controllers\CasaController::class,'show'])->middleware('auth:sanctum');
- Route::post('casas',[App\Http\Controllers\CasaController::class,'store'])->middleware(['auth:sanctum','access_control'])->name('casas-post');
- Route::put('casas/{id}',[App\Http\Controllers\CasaController::class,'update'])->middleware('auth:sanctum');
- Route::delete('casas/{id}',[App\Http\Controllers\CasaController::class,'delete'])->middleware('auth:sanctum');
+ Route::get('casas',[App\Http\Controllers\CasaController::class,'index']);//->middleware(['auth:sanctum','access_control'])->name('casas-get');
+ Route::get('casas/{id}',[App\Http\Controllers\CasaController::class,'show']);//->middleware('auth:sanctum');
+ Route::post('casas',[App\Http\Controllers\CasaController::class,'store']);//->middleware(['auth:sanctum','access_control'])->name('casas-post');
+ Route::put('casas/{id}',[App\Http\Controllers\CasaController::class,'update']);//->middleware('auth:sanctum');
+ Route::delete('casas/{id}',[App\Http\Controllers\CasaController::class,'delete']);//->middleware('auth:sanctum');
  
- Route::get('musicas',[App\Http\Controllers\MusicaController::class,'index'])->middleware(['auth:sanctum','access_control'])->name('musicas-get');
- Route::get('musicas/{id}',[App\Http\Controllers\MusicaController::class,'show'])->middleware(['auth:sanctum','access_control'])->name('musicas-get');
- Route::post('musicas',[App\Http\Controllers\MusicaController::class,'store'])->middleware(['auth:sanctum','access_control'])->name('musicas-post');
- Route::put('musicas/{id}',[App\Http\Controllers\MusicaController::class,'update'])->middleware(['auth:sanctum','access_control'])->name('musicas-put');
- Route::delete('musicas/{id}',[App\Http\Controllers\MusicaController::class,'delete'])->middleware(['auth:sanctum','access_control'])->name('musicas-delete');
